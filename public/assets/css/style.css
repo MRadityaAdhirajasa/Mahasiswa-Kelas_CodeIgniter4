@@ -50,13 +50,14 @@ img {
 }
 
 
-.profile-input{
-    width: 50%;
-}
-
-.create-input{
+.input-create{
     width: 50%;
     float: left;
+}
+
+.input-profile{
+    text-align: center;
+    justify-content: center;
 }
 
 select{
