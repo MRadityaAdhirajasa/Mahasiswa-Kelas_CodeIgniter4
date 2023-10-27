@@ -23,11 +23,22 @@ class UserController extends BaseController
     {
         $data = [
             'users' => $this->userModel->getUser(),
+            'kelass' => $this->kelasModel->getKelas(),
+            'title' => 'Home'
+        ];
+        return view('Home', $data);
+    }
+
+    public function user()
+    {
+        $data = [
+            'users' => $this->userModel->getUser(),
             'title' => 'list_user'
         ];
 
         return view('list_user', $data);
     }
+
 
     public function profile($nama = "", $kelas = "", $npm = "")
     {
@@ -127,6 +138,7 @@ class UserController extends BaseController
         return view ('profile', $data);
     }
 
+
     public function edit($id) {
         $user = $this->userModel->getUser($id);
         $kelas = $this->kelasModel->getKelas();
@@ -177,5 +189,81 @@ class UserController extends BaseController
         }
         return redirect()->to('/user')
         ->with('success', 'Berhasil Menghapus Data');
+    }
+
+    public function kelas()
+    {
+        $kelass = $this->kelasModel->getKelas();
+
+        $data = [
+            'title' => 'List Kelas',
+            'kelas' => $kelass
+        ];
+
+        return view('list_kelas', $data);
+    }
+
+    public function create_kelas()
+    {
+        // $kelas = $this->kelasModel->getKelas();
+
+        $data = [
+            'title' => 'List Kelas'
+        ];
+
+        return view('create_kelas', $data);
+    }
+
+    public function store_kelas()
+    {
+        // dd($this->request->getVar());
+
+        $this->kelasModel->saveKelas([
+            'nama_kelas' => $this->request->getVar('nama_kelas')
+        ]);
+
+
+        $data = [
+            'nama_kelas' => $this->request->getVar('nama_kelas'),
+            'title' => 'profile_kelas'
+        ];
+
+        // return view ('profile', $data);
+        return redirect()->to('/kelas');
+    }
+
+    public function destroy_kelas($id){
+        $result = $this->kelasModel->deleteKelas($id);
+        if (!$result) {
+            return redirect()->back()->with('error', 'Gagal Menghapus Data');
+        }
+        return redirect()->to('/kelas')
+        ->with('success', 'Berhasil Menghapus Data');
+    }
+
+    public function edit_kelas($id) {
+        $kelas = $this->kelasModel->getKelas($id);
+
+        $data = [
+            'title' => 'Edit Kelas',
+            'kelas' => $kelas
+        ];
+
+        return view ('edit_kelas', $data);
+    }
+
+    public function update_kelas($id) {
+        $data = [
+            'nama_kelas' => $this->request->getVar('nama_kelas'),
+        ];
+
+        $result = $this->kelasModel->updateKelas($data, $id);
+
+        if(!$result){
+            return redirect()->back()->withInput()
+            ->with('error', 'Gagal Menyimpan Data');
+        }
+
+        return redirect()->to('/kelas');
     }
 }
