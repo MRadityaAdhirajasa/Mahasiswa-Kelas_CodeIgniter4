@@ -1,0 +1,54 @@
+<?= $this->extend('layouts/app2') ?>
+
+<?= $this->section('content') ?>
+
+<header class="site-header js-site-header">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">UTP</a></div>
+          <div class="col-6 col-lg-8">
+
+
+            <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <!-- END menu-toggle -->
+
+            <div class="site-navbar js-site-navbar">
+              <nav role="navigation">
+                <div class="container">
+                  <div class="row full-height align-items-center">
+                    <div class="col-md-6 mx-auto">
+                      <ul class="list-unstyled menu">
+                        <li class="active"><a href="<?= base_url('home/')?>">Home</a></li>
+                        <li><a href="<?= base_url('kelas/')?>">Kelas</a></li>
+                        <li><a href="<?= base_url('user/')?>">User</a></li>
+                      </ul>
+                    </div>
+                  </div>    
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- END head -->
+
+    <section class="site-hero overlay" style="background-image: url(<?= base_url('/assets/img/sakura.jpg') ?>)" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row site-hero-inner justify-content-center align-items-center">
+          <div class="col-md-10 text-center" data-aos="fade-up">
+            <h1 class="heading">Selamat Datang</h1>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <!-- END section -->
+
+
+<?= $this->endSection() ?>
+
